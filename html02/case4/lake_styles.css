@@ -1,0 +1,124 @@
+﻿@charset 'utf-8';
+
+@font-face {
+    font-family: Champagne;
+    src: url('cac_champagne.woff') format('woff'),
+         url('cac_champagne.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Dobkin;
+    src: url('DobkinPlain.woff') format('woff'),
+         url('DobkinPlain.ttf') format('truetype');
+}
+
+html {
+    background-color: rgb(207, 206, 133);
+}
+
+header > nav {
+    background-color: rgb(130, 78, 136);
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+header > nav a {
+    color: rgb(187, 175, 199);
+    text-decoration: none;
+}
+
+body > section > h1 {
+    font-family: Champagne, cursive;
+    font-size: 3em;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+body > section#leftcol {
+    background-color: rgb(252, 249, 241);
+    width: 72%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+body > section#leftcol p {
+    font-size: 1.1em;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+body > section#rightcol {
+    background-color: rgb(222, 198, 231);
+    width: 28%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+body > section#leftcol > aside h1 {
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: normal;
+}
+
+body > section#leftcol > aside h2 {
+    font-weight: normal;
+    font-size: 1.2em;
+}
+
+body > section#leftcol > aside:nth-of-type(1) {
+    background-color: rgb(231, 157, 148);
+    padding-right: 10px;
+    line-height: 1.5em;
+}
+
+body > section#leftcol > aside:nth-of-type(2) {
+    background-color: rgb(214, 188, 108);
+    padding-left: 10px;
+    line-height: 1.0em;
+}
+
+body > section#rightcol h2 {
+    font-family: Dobkin, cursive;
+    font-weight: normal;
+}
+
+body > section#rightcol nav {
+    margin-left: 40px;
+}
+
+body > section#rightcol nav ul {
+    padding-left: 10px;
+    list-style: none;
+    line-height: 1em;
+}
+
+body > section#rightcol nav a {
+    text-decoration: none;
+    font-size: 0.9em;
+    color: rgb(154, 143, 168);
+}
+
+body > section#rightcol blockquote {
+    font-size: 1.2em;
+    color: rgb(184, 117, 190);
+}
+
+body > section#rightcol blockquote::before {
+    content: open-quote;
+    font-size: 2em;
+}
+
+body > section#rightcol blockquote::after {
+    content: close-quote;
+    font-size: 2em;
+}
+
+body > footer {
+    text-align: center;
+    background-color: rgb(94, 87, 93);
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

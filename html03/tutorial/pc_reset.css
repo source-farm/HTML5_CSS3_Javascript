@@ -19,6 +19,11 @@ li, main, nav, ol, p, section, span, ul {
     margin: 0;
     padding: 0;
     vertical-align: baseline;
+
+    /* Свойство width кроме контента включает в себя внутренний отступ(padding) и рамку(border). */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* Убираем маркеры с элементов списка навигации. */

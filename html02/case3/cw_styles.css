@@ -63,23 +63,82 @@ nav#mainLinks li > a:link, nav#mainLinks li > a:visited {
     color: white;
 }
 
+nav#mainLinks li > a:hover, nav#mainLinks li > a:active {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(51, 51, 51, 0.5);
+}
+
 
 
 
 /* Outline Styles */
+
+nav#outline {
+    color: rgb(51, 51, 51);
+    font-size: 0.8em;
+}
+
+nav#outline h1 {
+    text-align: center;
+}
+
+nav#outline > ol {
+    line-height: 2em;
+    margin: 0px 5px 0px 5px;
+    list-style: upper-roman;
+}
+
+nav#outline > ol ol {
+    list-style: upper-alpha
+}
+
+nav#outline a:link, nav#outline a:visited {
+    color: rgb(101, 101, 101);
+}
+
+nav#outline a:hover, nav#outline a:active {
+    color: rgb(97, 97, 211);
+    text-decoration: underline;
+}
 
 
 
 
 /* Section Styles */
 
+section {
+    background-color: rgb(220, 220, 220);
+}
+
+section h1 {
+    font-size: 2.2em;
+    padding: 10px;
+}
+
 
 
 
 /* Article Styles */
+
+article h2 {
+    font-size: 1.4em;
+}
+
+article p:first-of-type::first-letter {
+    font-size: 2em;
+    vertical-align: baseline;
+}
 
 
 
 
 /* Aside Styles */
 
+aside {
+    font-size: 0.9em;
+}
+
+aside h1 {
+    font-size: 1.4em;
+    text-align: center;
+}
