@@ -55,3 +55,8 @@ div.col-3-4 {
 
 /* Grid Outline Styles */
 
+/* Рисуем обводку вокруг div'ов грида. */
+div {
+    outline: 1px solid red;
+}
+
