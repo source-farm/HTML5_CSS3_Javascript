@@ -1,40 +1,105 @@
 /* Main Styles */
 
+main {
+    /* Устанавливаем position элемента main равным relative, чтобы координаты его дочерних элементов считались именно
+       от его левого верхнего края. */
+    position: relative;
+
+    /* Если какой-либо контент выйдет за границу main'а, то показать скроллбары для пролистывания. */
+    overflow: auto;
+
+    height: 450px;
+    width: 100%; /* Занимает всю ширину родителя, т.е. body. */
+}
+
 
 
 /* Infographic Styles */
+
+/* Координаты местоположения всех div элементов класса infobox считать относительно родителя в абсолютных единицах. */
+div.infobox {
+    position: absolute;
+}
 
 
 
 /* First Infographic */
 
+div#info1 {
+    display: block;
+    top: 20px;
+    left: 5%;
+}
+
 
 
 /* Second Infographic */
+
+div#info2 {
+    display: block;
+    top: 185px;
+    left: 42%;
+}
 
 
 
 /* Third Infographic */
 
+div#info3 {
+    display: block;
+    top: 135px;
+    left: 75%;
+}
+
 
 
 /* Fourth Infographic */
+
+div#info4 {
+    display: block;
+    top: 510px;
+    left: 5%;
+}
 
 
 
 /* Fifth Infographic */
 
+div#info5 {
+    display: block;
+    top: 800px;
+    left: 3%;
+}
+
 
 
 /* Sixth Infographic */
+
+div#info6 {
+    display: block;
+    top: 600px;
+    left: 48%;
+}
 
 
 
 /* Seventh Infographic */
 
+div#info7 {
+    display: block;
+    top: 1000px;
+    left: 68%;
+}
+
 
 
 /* Eighth Infographic */
+
+div#info8 {
+    display: block;
+    top: 1100px;
+    left: 12%;
+}
 
 
 
