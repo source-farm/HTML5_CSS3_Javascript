@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+/* Figure Box Styles */
+
+figure {
+    /* Размер внешнего отступа. Среднее значение auto устанавливает значения для правого и левого краёв в auto, что
+       приводит к центрированию по горизонтали. */
+    margin: 20px auto 0px;
+
+    width: 80%;
+}
+
+figure img {
+    display: block;
+    width: 100%;
+}
+
+figure figcaption {
+    background-color: white;
+    font-family: 'Palatino Linotype', Palation, 'Times New Roman', serif;
+    font-style: italic;
+    padding: 10px 0;
+    text-align: center;
+}
+
+
+
+
+/* HTML Styles */
+
+html {
+    background-image: url(tb_back1.png);
+    background-attachment: fixed;
+}
+
+
+
+
+/* Article Styles */
+
+
+
+
+/* Page Body Styles */
+
+
+
+
+/* Aside Styles */
+
+
+
+/* Footer Styles */
+
+
