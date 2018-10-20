@@ -38,6 +38,14 @@ html {
 
 /* Article Styles */
 
+article {
+    /* Добавление нескольких фонов к элементу article. Фоны добавляются в обратном порядке, в котором они перечислены. */
+    background: url(tb_back2.png) bottom right / 15% no-repeat content-box,
+                url(tb_back3.png) bottom left / 15% no-repeat content-box,
+                url(tb_back4.png) 0% / cover no-repeat,
+                rgb(211, 211, 211);
+}
+
 
 
 
