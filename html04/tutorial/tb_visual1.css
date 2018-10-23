@@ -7,6 +7,7 @@ figure {
        приводит к центрированию по горизонтали. */
     margin: 20px auto 0px;
 
+    opacity: 0.55;
     width: 80%;
     border-style: solid;
     border-width: 25px;
