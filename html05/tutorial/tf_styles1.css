@@ -132,6 +132,14 @@ body > footer {
 
 /* Pulldown Menu Styles */
 
+ul.submenu {
+    display: none;
+}
+
+a.submenuTitle:hover+ul.submenu, ul.submenu:hover {
+    display: block;
+}
+
 
 
 
@@ -147,6 +155,14 @@ Mobile styles: 0px to 480px
 
 /* Медиа запрос для применения стилей, указанных внутри неё, только к устройствам с шириной до 480 пикселей. */
 @media only screen and (max-width: 480px) {
+    nav.horizontal a {
+        font-size: 1.5em;
+        line-height: 2.2em;
+    }
+
+    aside {
+        display: none;
+    }
 }
 
 /*
@@ -159,6 +175,17 @@ Tablet styles: 481px and greater
 
 /* Медиа запрос для применения стилей, указанных внутри неё, только к устройствам с шириной более 480 пикселей. */
 @media only screen and (min-width: 481px) {
+    ul.mainmenu > li {
+        position: relative;
+        float: left;
+        width: 20%;
+    }
+
+    ul.submenu {
+        box-shadow: rgb(51, 51, 51) 5px 5px 15px;
+        position: absolute;
+        width: 100%;
+    }
 }
 
 /*
@@ -171,4 +198,32 @@ Desktop styles: 769px and greater
 
 /* Медиа запрос для применения стилей, указанных внутри неё, только к устройствам с шириной более 768 пикселей. */
 @media only screen and (min-width: 769px) {
+    ul.submenu {
+        background: transparent;
+        box-shadow: none;
+        display: block;
+        position: relative;
+        width: 100%;
+    }
+
+    nav.horizontal::after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+
+    nav.horizontal a.submenuTitle {
+        display: none;
+    }
+
+    article {
+        float: left;
+        margin-right: 5%;
+        width: 55%;
+    }
+
+    aside {
+        float: left;
+        width: 40%;
+    }
 }
