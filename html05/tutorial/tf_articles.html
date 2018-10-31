@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<!--
+========================================================================================================================
+ Дизайн страницы для печати
+========================================================================================================================
+
+Версию страницы для печати, которую создаёт браузер, не всегда имеет оптимальный вид: страница может заканчиваться в
+неожиданном месте, могут быть включены лишние элементы, которые в печатной версии не нужны и т.д. Поэтому для принтера
+создают свою отдельную версию страницы.
+
+============================================================
+ Правило @page
+============================================================
+
+В CSS каждая выводимая на печать страница представляется в виде бокса страницы(page box), которая состоит из двух
+областей:
+
+    - область страницы(page area), которая состоит из контента документа
+    - область полей(margin area), которая представляет собой область от напечатанного контента до границы страницы
+
+Стили применяются к боксу страницы с помощью правила @page:
+
+    @page {
+        style rules
+    }
+
+Здесь style rules - это правила, которые и применяются к странице. Самих правил можно применять не очень много: можно
+определить размер страницы и полей. Например, следующее правило устанавливает размер полей равным 0.5 дюймам:
+
+    @page {
+        margin: 0.5in;
+    }
+
+В боксе страницы нельзя использовать все единицы измерения, которые поддерживаются CSS. Например, нельзя пользоваться
+em'ами или ex'ами. Обычно используют такие единицы как дюймы или сантиметры.
+
+============================================================
+ Установка размера страницы
+============================================================
+
+Размер страницы можно установить с помощью свойства:
+
+    size: width height;
+
+Например, следующее правило устанавливает ширину страницы в 8.5 дюймов и высоту в 11 с полями в 1 дюйм:
+
+    @page {
+        size: 8.5in 11in;
+        margin: 1in;
+    }
+
+Значение ширины или высоты можно указывать и как auto(браузер сам определяет размеры) или inherit(унаследовать размер
+от родителя). Если указанные размеры не помещаются на реальную страницу, то браузеры либо поворачивают страницу либо
+масштабируют размеры страницы.
+
+============================================================
+ Псевдо-классы страницы
+============================================================
+
+По-умолчанию всё что определено внутри правила @page применяется ко всем печатаемым страницам. Однако если вывод
+охватывает несколько страниц, то можно указать различные стили для разных страниц с помощью псевдо-классов @page:
+
+    @page:pseudo-class {
+        style rules
+    }
+
+Здесь pseudo-class может быть равно first - первая страница печати, left или right - левая и правая страницы при
+двойной печати.
+
+============================================================
+ Именованные стили для страниц
+============================================================
+
+Для того чтобы создать стиль для страниц кроме первой, левой и правой можно использовать правило @page с именем:
+
+    @page name {
+        style rules
+    }
+
+Здесь name - это имя для стиля печатаемой страницы. Следующее правило создаёт стиль страницы по имени wideMargins, у
+которой поля равны 10 см.:
+
+    @page wideMargins {
+        margin: 10cm;
+    }
+
+После определения имени для стиля печатаемой страницы можно присвоить этот стиль любому элементу документа. Контент
+этого элемента появится на своей собственной странице, а браузер поставит разрывы страницы в начале и конце элемента.
+Присваивание именованного стиля печати происходит так:
+
+    selector {
+        page: name;
+    }
+
+Здесь selector выбирает элемент, который будет показан на отдельной странице, а name - это имя ранее определённого
+стиля. Т.о. следующее правило печатает все блочные цитаты на отдельных страницах с большими полями:
+
+    blockquote {
+        page: wideMargins;
+    }
+
+========================================================================================================================
+ Форматирование ссылок для печати
+========================================================================================================================
+
+Гипертекстовые ссылки в том виде как они показаны на экране какого-либо устройства не годятся для печати, т.к. не несут
+пользователю какую-либо полезную информацию. Но с помощью следующего правила:
+
+    a::after {
+        content: " (" attr(href) ") ";
+    }
+
+можно после названия ссылки в скобках вывести и саму ссылку. Функция attr извлекает значение атрибута href из элемента
+a. Если ссылка слишком длинная, то она может выйти за границы своего контейнера. Чтобы этого не происходило можно можно
+свойство word-wrap установить равным break-word, чтобы можно было переносить строки, разбив её слова на части.
+
+========================================================================================================================
+ Разрывы страницы
+========================================================================================================================
+
+При печати страницы, если не определить явно, браузер сам решает где находятся разрывы страницы(переходы на новую
+страницу). Чтобы вставить разрыв страницы до или после элемента можно воспользоваться свойствами:
+
+    page-break-before: type;
+    page-break-after: type;
+
+Здесь type может принимать значения always, avoid, left, right, auto и inherit. Например, чтобы каждый элемент h1
+начинался с новой страницы можно использовать правило:
+
+    h1 {
+        page-break-before: always;
+    }
+
+-->
+
+<html>
+<head>
+   <title>Trusted Friends: Articles of Interest</title>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+   <!-- Применить стиль к всем устройствам. -->
+   <link href="tf_reset.css" rel="stylesheet" media="all" />
+
+   <!-- Применить стиль только к устройствам с экранами. -->
+   <link href="tf_styles3.css" rel="stylesheet" media="screen" />
+
+   <!-- Применить стиль только к принтерам. -->
+   <link href="tf_print.css" rel="stylesheet" media="print" />
+</head>
+
+<body>
+   <header>
+      <img src="tf_logo.png" alt="Trusted Friends Daycare" />
+      <nav class="horizontal"> <a id="navicon" href="#"><img src="tf_navicon.png" alt="" /></a>
+         <ul>
+            <li><a href="tf_home.html">Home</a></li>
+            <li><a href="#" id="currentPage">Articles</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Forms</a></li>
+            <li><a href="#">Legal</a></li>
+         </ul>
+      </nav>
+   </header>
+   
+   <aside>
+      <ol>
+         <li><a href="#acc1">An Accredited Center</a></li>
+         <li>
+            <ol>
+               <li><a href="#acc2">What is Accreditation?</a></li>
+               <li><a href="#acc3">How does Accreditation Work?</a></li>
+               <li><a href="#acc4">Who Provides Accreditation?</a></li>
+            </ol>
+         </li>
+         <li><a href="#ci1">Our Community</a></li>
+         <li>
+            <ol>
+               <li><a href="#ci2">Improving Literacy</a></li>
+               <li><a href="#ci3">Promoting Partnerships</a></li>
+               <li><a href="#ci4">Legal Assistance</a></li>
+            </ol>
+         </li>
+      </ol>
+   </aside>
+   
+   <section id="main">
+      <article>
+         <h1 id="acc1">An Accredited Center</h1>
+         <img src="tf_photo2.png" alt="" />
+         <p> At Trusted Friends we believe that every child is capable of excellence. 
+            That is why we are committed to pursuing and maintaining our status as an 
+            accredited daycare center. By seeking national accreditation, you know 
+            that Trusted Friends is striving to give your family the very 
+            best daycare experience.</p>
+         <h2 id="acc2">What is Accreditation?</h2>
+         <p>Every daycare center must meet the state's minimum license requirements. 
+            We go beyond that. When a daycare center is awarded national accreditation 
+            they are meeting a higher standard that demonstrates its expertise in:</p>
+         <ul>
+            <li>Classroom Management</li>
+            <li>Curriculum Development</li>
+            <li>Health and Safety</li>
+            <li>Parental Support</li>
+            <li>Community Involvement</li>
+            <li>Teacher Certification</li>
+            <li>Administrative Oversight</li>
+            <li>Financial Statements</li>
+         </ul>
+         <p>Our commitment to accreditation gives you assurance we provide a positive 
+            educational experience for your child.</p>
+         <h2 id="acc3">How does Accreditation Work?</h2>
+         <p>Every other year we go through an intense review by recognized and esteemed 
+            national accreditation agencies. Their positive reports (available for 
+            inspection) confirm that we are providing a clean, safe, and positive 
+            environment for our children. Accreditation verifies that our teachers are 
+            qualified and fully engaged in giving our children a first-class educational 
+            experience.</p>
+         <p>Once we've completed the entire accreditation self-study process, trained 
+            professionals from our accrediting agencies conduct on-site visits to 
+            validate our compliance with national early childhood education standards.
+            But accreditation doesn't just take place every two years. It's an ongoing 
+            process of self-evaluation, discussion, and parental reviews.</p>
+         <p>We encourage parents to help us improve our center and become better stewards for 
+            their children. You can part of the accreditation process as we work together
+            to make Trusted Friends a great neighborhood center.</p>
+         <h2 id="acc4">Who Provides Accreditation?</h2>
+         <p>There are several national organizations that provide accreditation services.
+            Who a center chooses for oversight is important. Trusted Friends pursues national 
+            accreditation from three of the most 
+            respected national early childhood accreditation agencies:</p>
+         <ul>
+            <li><a href="http://www.example.com/nayc">National Association for Youth Care</a></li>
+            <li><a href="http://www.example.com/uaece">United Accreditation for Early Care and Education</a></li>
+            <li><a href="http://www.example.com/nda">National Daycare Accreditation</a></li>
+         </ul>
+         <p>Feel free to contact us to discuss accreditation and learn more about our 
+            standards for care and education.</p>
+      </article>
+      
+      <article>
+         <h1 id="ci1">Our Community</h1>
+         <img src="tf_photo3.png" alt="" />
+         <p>Trusted Friends is committed to improving the lives of children in 
+            our community. Our expertise in caring for the children at our daycare 
+            center gives us a unique understanding of child development, education 
+            issues, and parenting. Trusted Friends has partnered with several community 
+            organizations that advocate for poor and needy children and families.</p>
+         <p>We don't think of it as charity. It's part of our calling.</p>
+         <h2 id="ci2">Improving Literacy</h2>
+         <p>Part of Trusted Friend's mission is to promote literacy, which is key to 
+            education and a fulfilling life. We support reading programs and 
+            national literacy efforts initiated at both the local and national 
+            level. These efforts include providing early access to books and other 
+            reading material. We are also in the 
+            <a href="http://www.example.com/rbr">Raised by Reading</a> program, helping 
+            parents share the reading experience with their children.</p>
+            
+         <h2 id="ci3">Promoting Partnerships</h2>
+         <p>We are proud of our support for the <a href="http://www.example.com/bs">Big Siblings</a>
+            organization. Several of our educators are Big Sibling mentors and we 
+            provide meeting space and monthly activities for this fine group. We 
+            are also deeply involved with the <a href="http://www.example.com/ycn">Young Care Nursery</a> 
+            organziation, working to prevent child abuse and neglect. We partner with other 
+            caregivers committed to strengthening families in the community. For 
+            example we are a charter member of <a href="http://www.example.com/sf">Sunflower Friends</a>, which 
+            creates learning and enrichment opportunities for underprivileged 
+            children, helping them to realize their potential and recognize their
+            inherent dignity.</p>
+         <p>Please contact us if you believe that Trusted Friends can be a partner with 
+            your group in improving the lives of children and families in our community.</p>
+      </article>
+   </section>
+   
+   <footer>
+      Trusted Friends &#8226; 3450 Regency Lane, Carmel IN
+   </footer>
+</body>
+</html>
