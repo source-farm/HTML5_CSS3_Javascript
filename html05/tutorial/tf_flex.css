@@ -12,6 +12,32 @@ body {
     flex-flow: row wrap;
 }
 
+header, footer {
+    width: 100%;
+}
+
+aside {
+    flex-basis: 120px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+section#main {
+    flex-basis: 361px;
+    flex-grow: 3;
+    flex-shrink: 1;
+}
+
+section#topics {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+section#topics article {
+    flex-basis: 200px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
 
 
 
@@ -21,9 +47,13 @@ body {
 */
 
 @media only screen and (max-width: 480px) {
-  
+    aside {
+        order: 99;
+    }
 
- 
+    footer {
+        order: 100;
+    }
 }
 
 /* ============================================
@@ -32,9 +62,14 @@ body {
 */
 
 @media only screen and (min-width: 481px) {
+    nav.horizontal ul {
+        display: flex;
+        flex-flow: row nowrap;
+    }
 
-
-
+    nav.horizontal li {
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
 }
-
-
