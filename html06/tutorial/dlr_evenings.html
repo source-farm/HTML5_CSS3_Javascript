@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<!--
+========================================================================================================================
+ Введение в веб таблицы
+========================================================================================================================
+
+В этом уроке мы рассмотрим как с помощью HTML создавать таблицы. Веб таблица - это HTML структура, которая состоит из
+строк, каждая из которых содержит одну или больше ячеек. Ячейки сами по себе могут содержать другие HTML элементы как
+заголовки, параграфы, картинки и т.д.
+
+============================================================
+ Разметка таблицы
+============================================================
+
+Веб таблица обозначается элементом table, строки внутри которого обозначаются с помощью элемента tr(table row). Общая
+структура таблицы такова:
+
+    <table>
+        <tr>
+            table cells
+        </tr>
+        <tr>
+            table cells
+        </tr>
+        ...
+    </table>
+
+Здесь table cells являютс ячейками внутри каждой строки. Таблицы являются блочными элементами, т.е. по-умолчанию каждая
+таблица будет начинаться на новой строке.
+
+============================================================
+ Разметка заголовков и данных таблицы
+============================================================
+
+Веб таблицы поддерживают два вида ячеек:
+
+    - ячейки-заголовки(header cells) - содержат контент, который обычно располагается в самом верху колонок или в начале
+      строк. Размечаются с помощью элемента th. По-умолчанию браузеры показывают текст в ячейках-заголовках жирным
+      начертанием и в центре ячейки.
+
+    - ячейки-данные(data cells) - содержат данные таблицы. Размечаются с помощью элемента td.  По-умолчанию браузеры
+      показывают текст в ячейках-данных обычным начертанием и выравненным по левому краю.
+
+============================================================
+ Граница таблицы и ячеек
+============================================================
+
+С помощью таблицы стилей можно задать индивидуально стиль границы таблицы и отдельно каждой ячейки. При этом у ячеек
+могут быть 2 вида границ:
+
+    - отдельные - вокруг каждой ячейки находится отдельная рамка
+    - литые     - ячейки таблицы образуют сетку
+
+Управлять видом границы ячейки можно с помощью свойства:
+
+    border-collapse: type;
+
+Здесь type может принимать значения separate(отдельный тип границы) или collapse(литой тип границы). Если используется
+отдельный тип, то расстояние между границами ячеек можно указать с помощью свойства:
+
+    border-spacing: value;
+
+Здесь value может быть выражено в любой единице измерения длины CSS. Например, следующее правило устанавливает тип
+границы в отдельный, а расстояние между границами 10 пикселей:
+
+    table {
+        border-collapse: separate;
+    }
+
+При литом типе границы смежных ячеек сливаются в единую границу. Но они не просто отодвигаются ближе друг к другу, а
+сливаются по определённым правилам. Например, если ширина границы двух соседних ячеек была равна одному пикселю, то
+после слияния ширина общей границы не будет равна двум пикселям, а будет равна одному.
+
+========================================================================================================================
+ Объединение ячеек строк и столбцов
+========================================================================================================================
+
+Ячейка может состоять из ячеек вдоль стоки и/или столбца. Такая ячейка называется объединённой(spanning cell).
+Объединённая ячейка может быть создана добавлением одного или обоих атрибутов rowspan или colspan в элементы th или td:
+
+    rowspan="rows" colspan="cols"
+
+Здесь rows и cols - это количество строк и столбцов, из которых будет состоять ячейка. Объединение начинается с ячейки,
+в которую будут добавлены атрибуты rowspan и/или colspan и идёт вправо и вниз с этого положения. Например, чтобы
+создать ячейку данных, которая состоит из трёх строк и двух столбцов, можно использовать следующий элемент:
+
+    <td rowspan="3" colspan="2"> ... </td>
+
+При вставке в таблицу объединённой ячейки другие ячейки сдвигаются вправо или вниз. Поэтому чтобы сохранить прежние
+размеры таблицы необходимо сокращать количество ячеек в тех строках и столбцах, где оказалась объединённая ячейка.
+
+========================================================================================================================
+ Описание таблицы
+========================================================================================================================
+
+Таблица может содержать элемент caption, в котором можно указать текстовое описание таблицы:
+
+    <caption>content</caption>
+
+У таблицы может быть только один элемент caption и если он используется, то должен идти сразу за тегом <table>. Контент
+элемента caption может содержать дополнительные текстовые элементы как, например, em или strong. По-умолчанию браузеры
+располагают описание наверху таблицы, но можно указать и другое положение с помощью свойства:
+
+    caption-side: position;
+
+Здесь position может принимать значения top(используется по-умолчанию) или bottom. Для выравнивания описания по
+горизонтали можно воспользоваться свойством text-align. Например, чтобы описание находилось в нижнем правом углу можно
+воспользоваться следующими свойствами:
+
+    table caption {
+        caption-side: bottom;
+        text-align: right;
+    }
+
+-->
+
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>DLR Nightly Schedule</title>
+   <link href="dlr_reset.css" rel="stylesheet" />
+   <link href="dlr_styles.css" rel="stylesheet" />     
+   <link href="dlr_tables.css" rel="stylesheet" />     
+</head>
+
+<body>
+   <header>
+      <h1>Listener Supported <em>Since</em> 1975</h1>
+      <nav>
+         <a id="navicon" href="#"><img src="dlr_navicon.png" alt="" /></a>
+         <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Schedule</a></li>
+            <li><a href="#">Programs</a></li>
+            <li><a href="#">Music</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Listen Live</a></li>
+            <li><a href="#">Contact Us</a></li>
+         </ul>
+      </nav>
+   </header>
+   
+   <div id="container">
+   
+      <section id="main"> 
+         <img src="dlr_logo.png" alt="DLR" />
+         <h2>DLR Nightly Schedule</h2>
+         <p>DLR airs listener-supported public radio in Bismarck, 
+            North Dakota from 5:00 a.m. to 10:30 p.m.
+            You can <a href="#">Listen Live</a> to streaming audio 
+            of our broadcast. Please refer below for our current 
+            nightly schedule.</p>
+
+         <table class="schedule">
+             <caption>All Times Central</caption>
+             <tr>
+                 <th>Time</th>
+                 <th>Mon</th>
+                 <th>Tue</th>
+                 <th>Wed</th>
+                 <th>Thu</th>
+                 <th>Fir</th>
+                 <th>Sat</th>
+                 <th>Sun</th>
+             </tr>
+             <tr>
+                 <th>6:00 PM</th>
+                 <td colspan="7">National News</td>
+             </tr>
+             <tr>
+                 <th>6:30 PM</th>
+                 <td colspan="7">World News</td>
+             </tr>
+             <tr>
+                 <th>7:00 PM</th>
+                 <td rowspan="2">Opera Fest</td>
+                 <td rowspan="2">Radio U</td>
+                 <td rowspan="2">Science Week</td>
+                 <td rowspan="2">The Living World</td>
+                 <td>World Play</td>
+                 <td>Agri-Week</td>
+                 <td rowspan="2">Folk Fest</td>
+             </tr>
+             <tr>
+                 <th>7:30 PM</th>
+                 <td>Brain Stew</td>
+                 <td>Bismarck Forum</td>
+             </tr>
+             <tr>
+                 <th>8:00 PM</th>
+                 <td rowspan="4" colspan="4">The Classical Music Connection</td>
+                 <td>Old Time Radio</td>
+                 <td rowspan="4">Saturday Nite Jazz</td>
+                 <td rowspan="4">The Indie Connection</td>
+             </tr>
+             <tr>
+                 <th>8:30 PM</th>
+                 <td>The Inner Mind</td>
+             </tr>
+             <tr>
+                 <th>9:00 PM</th>
+                 <td rowspan="2">Open Mike Nite</td>
+             </tr>
+             <tr>
+                 <th>9:30 PM</th>
+             </tr>
+             <tr>
+                 <th>10:00 PM</th>
+                 <td colspan="7">World News Feed</td>
+             </tr>
+         </table>
+         
+      </section>
+      
+      <section id="right">
+         <aside id="current">
+            <h1>On the Air Now</h1>
+            <h2>Folk Fest </h2>
+            <p>Featuring the best of traditional and modern 
+               folk music </p>
+         </aside>
+         <aside id="future">
+            <h1>Coming Up on DLR</h1>
+            <h2>April 11-14<br/>
+               The Classical Music Connection </h2>
+            <p>Peter Thiesen shares his eclectic selection from the
+               world of classical music </p>
+            <h2>April 11<br/>
+               Opera Fest </h2>
+            <p>Excerpts from <em>Turandot</em> by Giacomo Puccini </p>
+            <h2>April 12<br/>
+               Radio U </h2>
+            <p>SF author Karen Graves reads selections from her latest
+               work, <i>Hellion of Troy</i> </p>
+            <h2>April 13<br/>
+               Science Week </h2>
+            <p>Prof. Thomas Glass from UND discusses <em>String Theory and Spooky Action at a 
+               Distance</em> </p>
+            <h2>April 14<br/>
+               The Living World </h2>
+            <p>Tim Unger explores the economic impact of <em>driverless cars</em> and 
+               presents the latest in eco-news </p>
+         </aside>
+      </section>
+      
+   </div>
+   
+   <footer>
+      DLR &#183; 4300 Magnolia Lane &#183; Bismarck, ND 58504 &#183; (701) 555 - 5611
+   </footer>
+</body>
+
+</html>

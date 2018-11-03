@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+/* Import Design Styles */
+
+@import url("wc_designs.css") screen;
+
+ 
+
+/* Flex Layout Styles */
+
+body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+nav#hole_list {
+    flex-basis: 140px;
+    flex-grow: 1;
+    flex-shrink: 3;
+}
+
+article {
+    flex-basis: 341px;
+    flex-grow: 3;
+    flex-shrink: 1;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+section#stats {
+    flex-basis: 120px;
+    flex-grow: 1;
+    flex-shrink: 4;
+}
+
+section#summary {
+    flex-basis: 341px;
+    flex-grow: 4;
+    flex-shrink: 1;
+}
+
+aside {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+aside > div {
+    flex-basis: 180px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+
+
+/* =============================
+	Mobile Styles: 0 - 480 pixels
+   =============================
+*/
+
+@media only screen and (max-width: 480px) {
+    nav#hole_list {
+        order: 99;
+    }
+
+    footer {
+        order: 100;
+    }
+
+    nav.horizontal ul {
+        display: none;
+    }
+
+    a#navicon:hover+ul, nav.horizontal ul:hover {
+        display: block;
+    }
+
+    aside {
+        display: none;
+    }
+}
+
+
+
+
+
+/* =================================================
+	Tablet and Desktop Styles: 481 pixels and greater
+   =================================================
+*/
+
+@media only screen and (min-width: 481px) {
+    a#navicon {
+        display: none;
+    }
+
+    nav.horizontal ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    nav.horizontal ul li {
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+}
