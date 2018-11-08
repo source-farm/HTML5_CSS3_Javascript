@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+/* Table Styles */
+
+table.spuzzle {
+    border-collapse: collapse;
+    margin: 0px auto;
+    width: 90%;
+}
+
+td {
+    border: 5px outset gray;
+    width: 33.3%;
+}
+
+th {
+    color: gray;
+    padding-right: 10px;
+    padding-bottom:: 10px;
+}
+
+table.subTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.subTable td {
+    box-shadow: inset 0px 0px 15px;
+    border: 1px solid black;
+    color: blue;
+    height: 40px;
+    vertical-align: center;
+    text-align: center;
+}
+
+td.goldBox td {
+    background-color: rgb(228, 199, 42);
+}
+
+td.greenBox td {
+    background-color: rgb(203, 229, 130);
+}
+
+/* Inner Table Styles */
+

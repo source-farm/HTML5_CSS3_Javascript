@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<!--
+========================================================================================================================
+ Введение в веб формы
+========================================================================================================================
+
+Веб формы позволяют пользователю взаимодействовать с сайтом.
+
+============================================================
+ Составные части веб формы
+============================================================
+
+Форма состоит из элементов управления(controls), которые по-другому ещё называют виджетами(widgets) - через них
+пользователь и взаимодействует с формой. HTML поддерживает большое количество виджетов:
+
+    - однострочное поле ввода(input box)
+    - кнопки для выбора из возможных вариантов(radio buttons)
+    - раскрывающийся список(selection list)
+    - checkbox'ы
+    - многострочные поля ввода
+    - спинбоксы(ввод числового значения из ограниченного диапазона)
+    - слайдеры
+    - календари
+    - виджеты для выбора цвета(color picker)
+
+С каждым виджетом связано так называние поле данные или просто поле(field). Фактически это значение атрибута name
+виджета.
+
+Информация, которая была введена в форму, обратывается специальным приложением на стороне сервера. В этом уроке мы
+будем изучать только формы, не вдаваясь в детали серверной части.
+
+========================================================================================================================
+ Начало работы с веб формами
+========================================================================================================================
+
+Все веб формы создаются с помощью специального элемента form:
+
+    <form id="text" attributes>
+        content
+    </form>
+
+Атрибут id позволяет уникальным образом идентифицировать формы на случай, если на странице окажется несколько форм.
+Атрибуты определяет как форма должна быть обработана браузером. content - это контент формы. Обычно формы содержать
+виджеты, которые мы рассмотрели чуть выше, но могут содержать и обычные элементы страницы: параграфы, заголовки и т.д.
+Элемент form может быть расположен в любом месте тела страницы.
+
+============================================================
+ Взаимодействие с веб сервером
+============================================================
+
+Чтобы определить куда и как следует отправить данные формы, можно воспользоваться следующими атрибутами формы:
+
+    <form action="url" method="type" enctype="type">
+        content
+    </form>
+
+Атрибут action определяет положение программы веб сервера, которая и обрабатывает форму; через атрибут method
+указывается как браузер должен отправить данные форму серверу; атрибут enctype устанавливает как данные должны быть
+закодированы перед отправкой.
+
+Атрибут method может принимать только два значения: get или post. Если method равен get, то данные формы добавляются в
+конец URL'а, который был указан через атрибут action. post добавляет данные формы в тело HTTP запроса. У каждого из них
+есть свои преимущества, но post считается более безопасным.
+
+Атрибут enctype может принимать следующие значения:
+
+    - application/x-www-form-urlencoded(используется по-умолчанию)
+    - multipart/form-data
+    - text/plain
+
+============================================================
+ Элемент fieldset
+============================================================
+
+Элементы, которые входят в форму, можно группировать с помощью элемента fieldset для их разделения по каким-либо
+признакам:
+
+    <fieldset id="id">
+        content
+    </fieldset>
+
+Атрибут id необъязателен, но можно указать, чтобы различать различные группы полей. content - контент группы полей.
+По-умолчанию браузеры рисуют границу вокруг группы полей.
+
+Элемент fieldset может содержать легенду - текстовое описание группы полей, которое по-умолчанию браузеры располагают
+в левом верхнем углу этого элемента:
+
+    <legend>text</legend>
+
+Здесь text - текст легенды. Элемент legend не может содержать других дочерних элементов и должен находиться внутри
+элемента fieldset.
+
+========================================================================================================================
+ Описание элемента для ввода данных
+========================================================================================================================
+
+Большинство элементов формы служат для ввода данных и обозначаются с помощью элемента:
+
+    <input name="name" id="id" type="type" />
+
+Здесь атрибут name устанавливает название поля данных. Это название передаётся вместе с значением поля на сервер,
+поэтому его всегда необходимо указывать. Атбрибут id нужен, если позже нужно будет ссылаться на это поле. Атрибут type
+может принимать 22 значения, каждый из которых упрощает ввод пользователю определённого типа информации. Если не
+указать этот атрибут, то он будет равен text, превращая элемент в поле ввода текста. type может быть равен, например,
+button, checkbox, date, password, submit, tel и др. На мобильных устройствах указание атрибута type может также
+приводить к показу различного рода виртуальных клавиатур, удобных для ввода определённой информации(числа, телефон и
+т.д.).
+
+Элемент input также может содержать атрибут autocomplete, который может быть равен "true" или "false". Когда он равен
+"true" браузер запомнит значение, которое было введено для поля и в следующий раз может предложить подсказку, чтобы не
+нужно вводить это значение снова. Эта возможность считается нежелательной с точки зрения безопасности для некоторых
+видов полей, поэтому иногда необходимо делать атрибут autocomplete равным "false".
+
+Значение по-умолчанию для виджета можно указать с поомщью атрибута value элемента input:
+
+    value="value"
+
+Пример:
+
+    <input name=”custCity” id=”city” type=”text” value=”Ormond Beach” />
+
+Заполнитель(placeholder) может использоваться для предоставления пользователю подсказки какого рода информация должна
+быть введена в поле:
+
+    placeholder="text"
+
+В отличие от значения по-умолчанию заполнитель не является значением поля. Заполнитель выводится в сером виде и когда
+пользователь начинает вводить данные, исчезает.
+
+============================================================
+ Добавление меток полей
+============================================================
+
+С каждым виджетом можно ассоциировать текствое описание, которое называется меткой(label):
+
+    <label for="id">label text</label>
+
+Здесь id - это значение атрибута id виджета, а label text - текст метки. Пример:
+
+    <label for=”street”>Street address</label>
+    <input name=”custStreet” id=”street” type=”text” />
+
+Связать метку с виджетом можно и косвенным образом с помощью кода подобного следующему:
+
+    <label>
+        Street Address
+        <input name=”custStreet” id=”street” />
+    </label>
+
+В этом случае атрибут for не нужно указывать.
+
+У каждого подхода есть свои преимущества. При использовании атрибута for метку можно располагать в любом месте страницы
+и она будет связана с виджетом, для которого предназначена. Во втором подходе метка и виджет будут восприниматься как
+один объект, что упрощает создание раскладки.
+
+После добавления метки она становится частью виджета: для элементов ввода текста нажатие на метку приводит к переходу
+внутрь виджета для ввода текста, элемент выбора цвета покажет окно с цветами при нажатии на метку и т.д.
+
+========================================================================================================================
+ Раскладка формы
+========================================================================================================================
+
+Обычно форма имеет раскладку в виде одной колонки, в которой метки указаны сверху виджетов, или двух колонок: одна для
+меток, а другая для виджетов.
+
+========================================================================================================================
+ Выбор из списка значений
+========================================================================================================================
+
+Для того чтобы выбрать значение(я) из списка представленных можно можно воспользоваться элементом select:
+
+    <select name="name">
+        <option value="value1">text1</option>
+        <option value="value2">text2</option>
+        ...
+    </select>
+
+Здесь атрибут name задаёт название поля данных; value1, value2 и т.д. это возможные значения поля; text1, text2 и т.д.-
+это текст, который видит пользователь при выборе определённого значения из списка. Атрибут value необъязательно должен
+быть равен тексту, внутри тега option. Текст обычно более длиннее value, т.к. описывает значение более подробно, а
+value удобен для обработки серверной программе и более короткий.
+
+По-умолчанию значением поля считается первое значение из списка, но можно выбрать и другое с помощью атрибута selected:
+
+    <option value="value" selected>text</option>
+
+По-умолчанию список представляет в виде раскрывающегося списка, но чтобы сразу увидеть несколько вариантов можно
+использовать атрибут size элемента select:
+
+    <select size="value">...</select>
+
+Здесь value - это количество одновременно показываемых опций списка. Также по-умолчанию можно выбрать только одно
+значение списка. Чтобы выбрать несколько можно воспользоваться атрибутом multiple:
+
+    <select multiple>...</select>
+
+Опции списка можно группировать с помощью элемента optgroup:
+
+    <select>
+        <optgroup label=”label1”>
+            <option>text1</option>
+            <option>text2</option>
+        </optgroup>
+        <optgroup label=”label2”>
+            <option>text3</option>
+            <option>text4</option>
+        </optgroup>
+    </select>
+    
+
+-->
+
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>Red Ball Survey</title>
+   <link href="rb_reset.css" rel="stylesheet" />
+   <link href="rb_styles.css" rel="stylesheet" />
+   <link href="rb_forms.css" rel="stylesheet" />
+   <script src="rb_formsubmit.js"></script>
+</head>
+
+<body>
+   <header>
+      <img src="rb_logo.png" alt="Red Ball Pizza" id="logoimg" />
+      <nav> <a id="navicon" href="#"><img src="rb_navicon.png" alt="" /></a>
+         <ul>
+            <li><a href="#">home</a></li>
+            <li><a href="#">menu</a></li>
+            <li><a href="#">directions</a></li>
+            <li><a href="#">coupons</a></li>
+            <li><a href="#">orders</a></li>
+            <li><a href="#">catering</a></li>
+            <li><a href="#">reviews</a></li>
+         </ul>
+      </nav>
+   </header>
+   <section>
+      <h1>Customer Survey</h1>
+      <p>Thank you for taking our customer survey. Your response 
+         helps Red Ball Pizza maintain the tradition that has made 
+         us the top-rated pizzeria in the metro area.
+         All participants are automatically entered into a monthly
+         drawing to receive a <em>Red Ball Express PizzaFest</em> containing 
+         two large pizzas, a 2-liter soda, and a side 
+         order of chicken wings. Check your e-mail inbox for 
+         contest results. </p>
+      <p>Surveys are private and confidential. Red Ball 
+         Pizza will not share your contact information with third 
+         parties, <em>ever</em>. </p>
+      <p>Required values are marked by an asterisk (*)</p>
+
+      <form id="survey" action="http://www.example.com/redball/survey" method="post">
+          <fieldset id="custInfo">
+              <legend>Customer Information</legend>
+
+              <div class="formRow">
+                  <label for="name">Name*</label>
+                  <input name="custName" id="name" type="text" placeholder="first and last name" />
+              </div>
+
+              <div class="formRow">
+                  <label for="street">Street Address</label>
+                  <input name="custStreet" id="street" type="text" />
+              </div>
+
+              <div class="formRow">
+                  <label for="city">City</label>
+                  <input name="custCity" id="city" type="text" value="Ormond Beach" />
+              </div>
+
+              <div class="formRow">
+                  <label for="state">State</label>
+                  <input name="custState" id="state" type="text" value="FL" />
+              </div>
+
+              <div class="formRow">
+                  <label for="zip">Postal Code</label>
+                  <input name="custZip" id="zip" type="text" placeholder="nnnnn (-nnnn)"/>
+              </div>
+
+              <div class="formRow">
+                  <label for="phone">Phone number</label>
+                  <input name="custPhone" id="phone" type="tel" placeholder="(nnn) nnn-nnnn"/>
+              </div>
+
+              <div class="formRow">
+                  <label for="mail">E-mail*</label>
+                  <input name="custEmail" id="mail" type="email" />
+              </div>
+
+              <div class="formRow">
+                  <label for="info">Where did you hear about us?<br />(select all that apply)</label>
+                  <select name="infoSrc" id="info" size="5" multiple>
+                      <option value="internet">Internet</option>
+                      <option value="mag">Magazine</option>
+                      <option value="news">Newspaper</option>
+                      <option value="word">Word of Mouth</option>
+                      <option value="other">Other</option>
+                  </select>
+              </div>
+          </fieldset>
+
+          <fieldset id="expInfo">
+              <legend>Share Your Experience at Red Ball Pizza</legend>
+
+              <div class="formRow">
+                  <label for="visit">Date of visit</label>
+                  <input name="visitDate" id="visit" type="date" />
+              </div>
+
+              <div class="formRow">
+                  <label for="order">Order type</label>
+                  <select name="orderType" id="order">
+                      <option value="order1">Carry out</option>
+                      <option value="order2">Delivery</option>
+                      <option value="order3" selected>Dine in</option>
+                      <option value="order4">Take 'n bake</option>
+                  </select>
+              </div>
+          </fieldset>
+      </form>
+     
+   </section>
+   <footer>
+      <h1>ORDER</h1>
+      <a href="#">Specials</a> <a href="#">Pizza</a> <a href="#">Pasta</a> <a href="#">Wings</a> <a href="#">Sides</a> <a href="#">Salads</a> <a href="#">Drinks</a> <a href="#">Desserts</a>
+      <h1>ABOUT US</h1>
+      <a href="#">Our Story</a> <a href="#">Blog</a> <a href="#">Catering</a> <a href="#">School Lunches</a>
+      <h1>CUSTOMER SERVICE</h1>
+      <a href="#">Gluten Free Crusts</a> <a href="#">Contact Us</a> <a href="#">FAQs</a>
+      <h1>MY ACCOUNT</h1>
+      <a href="#">Create an Account</a> <a href="#">Sign In</a> <a href="#">Order Status</a>
+      <h1>NUTRITION</h1>
+      <a href="#">Nutrition Information</a> <a href="#">Food Allergen</a> <a href="#">Gluten Free Pizza</a>
+      <h1>POLICIES</h1>
+      <a href="#">Privacy Policy</a> <a href="#">Terms of Use</a>
+      <address>
+      Red Ball Pizza <br />
+      811 Beach Drive <br />
+      Ormond Beach, FL  32175 <br />
+      (386) 555 - 7499
+      </address>
+   </footer>
+</body>
+</html>
