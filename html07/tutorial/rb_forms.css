@@ -39,13 +39,34 @@ legend {
 
 /* Text Area Styles */
 
+textarea {
+    margin-top: 10px;
+    height: 100px;
+    width: 95%;
+}
+
 
 
 /* Spinner Styles */
 
+div.formRow > input#dineSpin {
+    flex: 0 0 50px;
+}
+
 
 
 /* Form Button Styles */
+
+div#buttons {
+    text-align: center;
+    width: 100%;
+}
+
+input[type='submit'], input[type='reset'] {
+    font-size: 1.2em;
+    padding: 5px;
+    margin: 15px;
+}
 
 
 

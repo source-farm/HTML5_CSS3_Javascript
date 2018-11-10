@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+/* Column Styles */
+
+article {
+    column-width: 260px;
+    column-gap: 20px;
+    column-rule: 1px solid rgb(154, 64, 31);
+    widows: 2;
+    orphans: 2;
+}
+
+article h1 {
+    column-span: all;
+}
+
