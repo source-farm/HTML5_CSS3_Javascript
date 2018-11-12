@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+/* Audio and Video Player Styles */
+
+audio {
+    box-shadow: rgb(51, 51, 51) 8px 8px 15px;
+    display: block;
+    margin: 10px auto;
+    width: 90%;
+}
+
+
+
+/* Track Styles */
+
+
