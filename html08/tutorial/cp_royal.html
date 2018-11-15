@@ -92,6 +92,172 @@ HTML5 не определяет какого-либо формата аудио,
 элементов source можно добавить текст, который будет показан только в том случае, если браузер не поддерживает
 воспроизведение звуков, уканных в элементах source.
 
+========================================================================================================================
+ Видео
+========================================================================================================================
+
+============================================================
+ Видео форматы и кодеки
+============================================================
+
+Видео файл обычно состоит из двух кодеков: для звука и для видео. Существует несколько наиболее широко используемых
+кодеков в вебе для работы с видео: H.264, Theora, VP8 и VP9. В качестве контейнеров распространены такие форматы как
+.mp4(.m4v), .ogg, .webm. Поддержка комбинаций кодеков для аудио, видео и контейнера у разных браузеров разная, что нужно
+учитывать при подготовке видео файла для публикации в вебе.
+
+============================================================
+ Элемент video
+============================================================
+
+Видео добавляется на веб страницу с помощью элемента video:
+
+    <video attributes>
+        <source url="url1" type="mime-type" />
+        <source url="url2" type="mime-type" />
+        ...
+    </video>
+
+Здесь attributes - это HTML атрибуты для настройки показа видео; url1, url2 и т.д. - пути до видео и mime-type - формат
+каждого видео. Как в случае с элементом audio, браузер воспроизведёт первое видео среди элементов source, формат
+которого он поддерживает. Элемент video поддерживает многие атрибуты, которые были приведелены при изучении элемента
+audio. Пример элемента video с сообщением, которое показывается только в случае, если браузер не сумеет воспроизвести
+ни один формат видео:
+
+    <video controls>
+        <source src=”cp_dance5.mp4” type=”video/mp4” />
+        <source src=”cp_dance5.webm” type=”video/webm” />
+        <p><em>To play this video clip, your browser needs to support HTML5.</em></p>
+    </video>
+
+Когда браузер загружает видео он показывает первый кадр видео файла как фон элемента video, но с помощью атрибута
+poster можно установить любую фотографию в качестве фона:
+
+    <video poster="url">
+        ...
+    </video>
+
+============================================================
+ Добавление текстового трека
+============================================================
+
+К элементам audio и video можно добавить текст с помощью элемента track:
+
+    <track kind="type" src="url" label="text" srclang="lang" />
+
+Здесь атрибут kind определяет тип трека и может принимать значения captions, chapters, descriptions, subtitles и
+metadata; src определяет путь до файла текстового трека; label задаёт название трека и srclang указывает на язык трека.
+Для одного медиа файла можно определить несколько текстовых треков каждый со своим типом. Пример:
+
+    <video controls>
+        <source src=”story.mp4” type=”video/mp4” />
+        <track kind=”captions” src=”captions.vtt” label=”Captions” />
+        <track kind=”chapters” src=”chapters.vtt” label=”Chapters” />
+        <track kind=”subtitles” src=”english.vtt” srclang=”en” default />
+        <track kind=”subtitles” src=”french.vtt” srclang=”fr” />
+        <track kind=”subtitles” src=”spanish.vtt” srclang=”es” />
+        <track kind=”descriptions” src=”summary.vtt” label=”Summary” />
+    </video>
+
+В этом примере для видеоклипа определяется 6 текстовых треков: титры, главы, 3 субтитра с разными языками и описание
+клипа. Только один трек может быть активен в какой-то момент времени. Активный трек обозначается атрибутом default.
+Этот атрибут необходимо указывать, даже если используется только один текстовый трек.
+
+========================================================================================================================
+ Создание переходов с помощью CSS
+========================================================================================================================
+
+Используя CSS можно создавать переход(transition) от одного состояния в другое для создания плавных анимаций. Такие
+переходы создаются с помощью свойства transition:
+
+    transition: property duration;
+
+Здесь property - это свойство объекта, которое меняется от начального состояния к конечному за время duration, которое
+может быть выражено как в секундах так и в мс. Пример:
+
+    a {
+        background-color: white;
+        transition: background-color 4s;
+    }
+
+    a:hover {
+        background-color: black;
+    }
+
+В этом примере при наведении указателя на ссылку фон ссылки изменится от белого к чёрному за 4с. После того как
+указатель покинет ссылку фон изменится от чёрного к белому тоже за 4с. Тот блок свойств, который указан вместе с
+свойством transition, считается начальным состоянием.
+
+Можно анимировать и несколько свойство тоже. Например:
+
+    a {
+        background-color: white;
+        color: black;
+        transition: background-color 4s, color 4s;
+    }
+
+    a:hover {
+        background-color: black;
+        color: white;
+    }
+
+В этом примере помимо фона ссылки также меняется и цвет текста ссылки.
+
+Все свойства можно анимировать, используя ключевое слово all:
+
+    transition: all duration;
+
+Также можно управлять скоростью анимации на различных участках отведённого времени для анимации добавив в свойство
+transition параметр timing-function:
+
+    transition: property duration timing-function;
+
+Здесь timing-function может принимать значение ease(используется по-умолчанию), ease-in, ease-out, ease-in-out, linear
+или cubic-bezier(n, n, n, n) - кривая Безье.
+
+Задержка перед началом перехода задаётся параметром delay в секундах или мс:
+
+    transition: property duration timing-function delay;
+
+========================================================================================================================
+ Создание анимаций с помощью CSS
+========================================================================================================================
+
+Хотя переходы(transition) тоже позволяют создать анимацию для более детальной анимации можно воспользоваться правилом
+@keyframes:
+
+    @keyframes name {
+        keyframe1 { styles; }
+        keyframe2 { styles; }
+        ...
+    }
+
+Здесь name - это название анимации, используется при применении анимации к какому-либо элементу; keyframe1, keyframe2 и
+т.д. - это процент от начала анимации, когда нужно применить стили указанные стили. Вместо 0% и 100% можно указать from
+и to. Пример:
+
+    @keyframes flight {
+        from {left: 0px; top: 0px;}
+        5%   {left: 50px; top: 80px;}
+        10%  {left: 70px; top: 80px;}
+        20%  {left: 90px; top: 25px;}
+        to   {left: 60px; top: 10px;}
+    }
+
+Анимацию можно применить к элементу с помощью свойств:
+
+    animation-name: keyframes;
+    animation-duration: times;
+
+Здесь keyframes - это разделённый запятыми список названий анимаций, определённых в правилах @keyframes; times - 
+продолжительность анимации в секундах и мс. Пример:
+
+    body {
+        animation-name: flight;
+        animation-duration: 5s;
+    }
+
+Есть также и другие свойства, которые позволяют управлять задержкой, зацикливанием и другими свойствами анимации.
+
 -->
 
 <html lang="en">
@@ -102,6 +268,8 @@ HTML5 не определяет какого-либо формата аудио,
    <link href="cp_base.css" rel="stylesheet" />
    <link href="cp_styles.css" rel="stylesheet" />
    <link href="cp_media.css" rel="stylesheet" />
+   <link href="cp_animate.css" rel="stylesheet" />
+   <script src="cp_spin.js"></script>
 </head>
 
 <body>
@@ -197,8 +365,19 @@ HTML5 не определяет какого-либо формата аудио,
             As the cage turned, Astaire 
             would seamlessly dance across the four sides of the box, creating the 
             illusion of weightlessness.
-         </p>    
-     
+         </p>
+         <p>Click the play button to view this classic dance sequence.
+            To see the dance as it appeared on the movie set, go to the start of
+            the clip and click &#8635; to rotate and play the video. Click &#9995; to
+            pause the ­rotation and the playback.</p>
+         <input type="checkbox" id="rotateVideo" />
+         <label for="rotateVideo"></label>
+         <video controls poster="cp_photo2.png">
+             <source src="cp_dance.mp4" type="video/mp4" />
+             <source src="cp_dance.webm" type="video/webm" />
+             <track kind="captions" label="Dance Captions" src="cp_captions.vtt" default />
+             <p><em>To play this video clip, your browser needs to support HTML5.</em></p>
+         </video>
       </aside> 
    </section>  
    
